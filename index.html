@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<script type="text/javascript" language="JavaScript" src="Puzzle.js"></script>
+		<script type="text/javascript" language="JavaScript" src="Sudoku.js"></script>
+		<script type="text/javascript" language="JavaScript" src="Encoding.js"></script>
+		<link rel="stylesheet" type="text/css" href="Sudoku.css" />
+		<title>Sudoku</title>
+	</head>
+
+	<body>
+		<div id="top_bar">
+			<ul>
+				<li>To begin, find a sudoku puzzle and input its values below.</li>
+				
+				<li style="float: right;" id="load_puzzle"><a href="javascript:void(0);" onclick="saveLoadPuzzle();" title="View options to save or load a sudoku puzzle.">Save/Load</a></li>
+			</ul>
+		</div>
+
+		<table id="grid_table">
+			<tbody></tbody>
+		</table>
+
+		<div id="controls">
+			<form name="controls_form">
+				<div class="small_header"><a href="javascript:void(0);" title="Delete all cell values, reset pencil marks, and remove highlighting." onclick="clearCells();">Clear Cells</a></div>
+				<!-- <div class="small_header"><a href="javascript:void(0);" title="Generate a text string that stores the current clues, values, and pencilmarks." onclick="savePuzzle();">Save</a></div> -->
+				<div class="small_header"><a href="javascript:void(0);" title="View options to save or load a sudoku puzzle." onclick="saveLoadPuzzle();">Save/Load</a></div>
+
+				<div class="small_header">Cell Highlighting:</div>
+				<ul>
+					<li>
+						<input type="button" name="highlight_ones" value="1" class="highlight_button" title="Highlight all cells that do not have a pencil mark of one." onclick="highlight(1);" />
+						<input type="button" name="highlight_twos" value="2" class="highlight_button" title="Highlight all cells that do not have a pencil mark of two." onclick="highlight(2);" />
+						<input type="button" name="highlight_threes" value="3" class="highlight_button" title="Highlight all cells that do not have a pencil mark of three." onclick="highlight(3);" />
+						<input type="button" name="highlight_fours" value="4" class="highlight_button" title="Highlight all cells that do not have a pencil mark of four." onclick="highlight(4);" />
+						<input type="button" name="highlight_fives" value="5" class="highlight_button" title="Highlight all cells that do not have a pencil mark of five." onclick="highlight(5);" />
+						<input type="button" name="highlight_sixes" value="6" class="highlight_button" title="Highlight all cells that do not have a pencil mark of six." onclick="highlight(6);" />
+						<input type="button" name="highlight_sevens" value="7" class="highlight_button" title="Highlight all cells that do not have a pencil mark of seven." onclick="highlight(7);" />
+						<input type="button" name="highlight_eights" value="8" class="highlight_button" title="Highlight all cells that do not have a pencil mark of eight." onclick="highlight(8);" />
+						<input type="button" name="highlight_nines" value="9" class="highlight_button" title="Highlight all cells that do not have a pencil mark of nine." onclick="highlight(9);" />
+						<input type="button" name="highlight_none" value="Clear" class="highlight_button" title="Clear all highlighting." onclick="highlight(0);" />
+					</li>
+				</ul>
+
+				<div class="small_header">Pencil Marks:</div>
+				<ul>
+					<li>
+						<input type="radio" name="write_mode" value="values" id="write_mode_values" title="Enter values by clicking on a cell and typing the desired value." checked="checked" selected="selected" />
+						<label for="write_mode_values" title="Enter values by clicking on a cell and typing the desired value." >Enter values.</label>
+					</li><li>
+						<input type="radio" name="write_mode" value="pencilmarks" id="write_mode_pencilmarks" title="Enter pencil marks by clicking on a cell and typing to insert or delete the desired pencil mark." />
+						<label for="write_mode_pencilmarks" title="Enter pencil marks by clicking on a cell and typing to insert or delete the desired pencil mark.">Enter pencil marks.</label>
+					</li><li>
+						<input type="checkbox" name="auto_pencilmarks" checked="checked" id="auto_pencilmarks" title="Automatically remove pencil marks when cells are filled." />
+						<label for="auto_pencilmarks" title="Automatically remove pencil marks when cells are filled.">Automatically remove pencil marks.<label>
+					</li><li>
+						<input type="button" name="update_pencilmarks" value="Update" title="Change pencil marks to reflect the current values." onclick="updatePencilmarks();" />
+						<input type="button" name="reset_pencilmarks" value="Reset" title="Add all pencil marks to empty cells." onclick="clearPencilmarks();" />
+					</li>
+				</ul>
+
+				<div class="small_header">Validation:</div>
+				<ul>
+					<li>
+						<input type="checkbox" name="show_duplicates" checked="checked" id="show_duplicates" title="Highlight duplicate values." onclick="showDuplicates();" />
+						<label for="show_duplicates" title="Highlight duplicate values red.">Show duplicates.<label>
+					</li>
+					<li></li>
+				</ul>
+
+				<div class="small_header">Guessing tools:</div>
+
+				<table id="guessing_tools_table">
+					<tbody>
+						<tr>
+							<td>Mark blank cells:</td>
+							<td><a href="javascript:void(0);" onclick="setBlankCells(0);" style="color: black; background-color: #FF8;" id="mark_blank_cells_0" title="Mark all blank cells black so they can be deleted easily. This is useful for making guesses.">Black</a></td>
+							<td><a href="javascript:void(0);" onclick="setBlankCells(1);" style="color: blue;" id="mark_blank_cells_1" title="Mark all blank cells blue so they can be deleted easily. This is useful for making guesses.">Blue</a></td>
+							<td><a href="javascript:void(0);" onclick="setBlankCells(2);" style="color: red;" id="mark_blank_cells_2" title="Mark all blank cells red so they can be deleted easily. This is useful for making guesses.">Red</a></td>
+							<td><a href="javascript:void(0);" onclick="setBlankCells(3);" style="color: green;" id="mark_blank_cells_3" title="Mark all blank cells green so they can be deleted easily. This is useful for making guesses.">Green</a></td>
+							<td><a href="javascript:void(0);" onclick="setBlankCells(4);" style="color: purple;" id="mark_blank_cells_4" title="Mark all blank cells purple so they can be deleted easily. This is useful for making guesses.">Purple</a></td>
+						</tr><tr>
+							<td>Delete cells marked:</td>
+							<td><a href="javascript:void(0);" onclick="deleteColoredCells(0);" style="color: black;" title="Delete all cells marked black.">Black</a></td>
+							<td><a href="javascript:void(0);" onclick="deleteColoredCells(1);" style="color: blue;" title="Delete all cells marked blue.">Blue</a></td>
+							<td><a href="javascript:void(0);" onclick="deleteColoredCells(2);" style="color: red;" title="Delete all cells marked red.">Red</a></td>
+							<td><a href="javascript:void(0);" onclick="deleteColoredCells(3);" style="color: green;" title="Delete all cells marked green.">Green</a></td>
+							<td><a href="javascript:void(0);" onclick="deleteColoredCells(4);" style="color: purple;" title="Delete all cells marked purple.">Purple</a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="small_header">Solution/Hints:</div>
+				<ul>
+					<li>
+						<!-- <input type="checkbox" name="show_solution" id="show_solution" title="Show the solution to the sudoku puzzle." onclick="showSolution();" />
+						<label for="show_solution" title="Show the solution to the sudoku puzzle.">Show solution.<label> -->
+						<input type="button" name="show_solution" id="show_solution" value="Show Solution" title="Show the solution to the sudoku puzzle in a new window." onclick="showSolution();" />
+					</li><li>
+						<input type="button" name="get_hint" id="get_hint" value="Hint (3)" title="Give a hint for the selected cell. There are three hints remaining." onclick="getHint();" />
+					</li>
+					</ul>
+
+			</form>
+		</div>
+
+		<div id="begin_solving">
+			<input type="button" value="Begin Solving" id="begin_solving_button" class="large_button" title="Submit the entered numbers as clues and begin solving the sudoku puzzle." onclick="submitGivens();" onmouseover="this.classList.add('large_button_hover'); this.classList.remove('large_button');" onmousedown="this.classList.add('large_button_hover'); this.classList.remove('large_button');" onmouseout="this.classList.add('large_button'); this.classList.remove('large_button_hover');" />
+		</div>
+		
+		<div id="side_bar">
+			<div id="side_bar_close"><a href="javascript:void(0);" onclick="document.getElementById('side_bar').style.display='none';">Close</a></div>
+			
+			<div class="small_header">Paste Puzzle:</div>
+			<ul>
+				<li>Input a sudoku puzzle. Use &quot;0&quot;, &quot;.&quot;, &quot;*&quot;, or &quot;_&quot; for empty cells. This overwrites existing values.</li>
+				<li>
+					<input type="text" id="paste_puzzle" style="width: 300px;" title="Paste values to place into the puzzle. Use &quot;0&quot;, &quot;.&quot;, &quot;*&quot;, or &quot;_&quot; for empty cells. All other characters are ignored. This overwrites existing values." onkeydown="if (event && event.keyCode === 13){pastePuzzle();}" />
+					<input type="button" id="paste_puzzle_button" value="Input Puzzle" onclick="pastePuzzle();" title="Paste values to place into the puzzle. Note: this overwrites existing values." />
+				</li>
+			</ul>
+			
+			<div class="small_header">Copy Puzzle:</div>
+			<ul>
+				<li>Here are the current values of the sudoku puzzle as an 81-digit text string:</li>
+				<li>
+				<input type="text" id="copy_puzzle" style="width: 300px;" title="Copy the current values of the sudoku puzzle. Click to refresh." onclick="this.value = cells.toString().replace(/[^0-9]/g, ''); javascript:select();" />
+				</li>
+			</ul>
+
+			<div class="small_header">Import State:</div>
+			<ul>
+				<li>Reload a sudoku puzzle by pasting the text string below. This overwrites existing values.</li>
+				<li>
+					<input type="text" id="import_save" style="width: 300px;" title="Reload an previous save. Note: this overwrites existing values." onkeydown="if (event && event.keyCode === 13){decode(this.value);}" />
+					<input type="button" value="Import Save" id="import_save_button" onclick="decode(document.getElementById('import_save').value);" title="Reload an previous save. Note: this overwrites existing values." />
+				</li>
+			</ul>
+			
+			<div class="small_header">Export State:</div>
+			<ul>
+				<li>Copy this text string and paste it into a new text file to store the value, pencilmarks, and color of each cell.</li>
+				<li>
+				<input type="text" id="export_save" style="width: 300px;" title="This text string stores the value, pencilmarks, and color of each cell. Click to refresh." onclick="this.value = encode(); javascript:select();" />
+				</li>
+			</ul>
+			
+			<div class="small_header">Save/Load Cookie:</div>
+			<ul>
+				<li>
+					<input type="button" value="Save to Cookie" id="save_cookie" onclick="saveToCookie();" title="Save the value, pencilmarks, and color of each cell to a cookie."/>
+					<input type="button" value="Load from Cookie" id="load_cookie" onclick="loadFromCookie();" title="Load the previously saved sudoku puzzle from the cookie if it exists." />
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,254 @@
+body {
+	margin: 0px;
+}
+
+td
+{
+	white-space: nowrap;
+}
+
+form {
+	margin: 0px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a:visited {
+	color: blue;
+}
+
+a:active {
+	color: red;
+}
+
+#top_bar {
+	background-color: #FFA;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 10pt;
+	height: 22px;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	min-width: 675px;
+}
+
+#top_bar ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+#top_bar li {
+	float: left;
+	margin: 3px 10px;
+}
+
+#top_bar a {
+	font-size: 10pt;
+}
+
+#grid_table {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	float: left;
+	height: 551px;
+	left: 8px;
+	margin: 0px;
+	position: absolute;
+	top: 22px;
+	width: 536px;
+}
+
+#controls {
+	border-style: solid;
+	border-width: 2px;
+	display: none;
+	position: absolute;
+	top: 8px;
+	left: 552px;
+	width: 425px;
+}
+
+#begin_solving {
+	/* border-style: solid; */
+	/* border-width: 2px; */
+	position: absolute;
+	top: 42px;
+	left: 564px;
+}
+
+#begin_solving_button {
+	padding: 0px;
+	cursor: pointer;
+	text-align: center;
+	font-family: arial, sans-serif;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	border: 1px solid blue;
+	border-radius: 5px;
+	height: 30px;
+	width: 150px;
+	margin: 0px;
+}
+
+#controls ul {
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+}
+
+#solving_status {
+	cursor: help;
+}
+
+#guessing_tools_table {
+	border-width: 0px;
+	border-spacing: 0px;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 40px;
+	padding: 0px;
+}
+
+#side_bar {
+	width: 460px;
+	z-index: 2;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	display: none;
+	height: 100%;
+	background-color: #AAA;
+	/* cursor: w-resize; */
+	overflow: auto;
+}
+
+#side_bar_close {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+}
+
+.cell {
+	border-bottom-style: none;
+	border-color: black;
+	border-right-style: none;
+	border-style: dotted;
+	border-width: 1px;
+	
+	font-family: Arial, sans-serif;
+	font-size: 24pt;
+	font-weight: bold;
+	height: 42px;
+	text-align: center;
+	vertical-align: middle;
+	width: 56px;
+}
+
+.cell input {
+	font-family: Arial, sans-serif;
+	font-size: 22pt;
+	font-weight: bold;
+	height: 36px;
+	text-align: center;
+	width: 52px;
+}
+
+.cell_highlighted {
+	background-color: #CCFFCC;
+}
+
+.cell_highlighted input {
+	background-color: #CCFFCC;
+	border-color: silver;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.cell_hint {
+	font-style: italic;
+	color: grey;
+}
+
+.candidates {
+	border-bottom-style: none;
+	border-color: black;
+	border-right-style: none;
+	border-style: dotted;
+	border-width: 1px;
+
+	color: blue;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	height: 19px;
+	padding-left: 2px;
+	text-align: left;
+	text-decoration: none;
+	vertical-align: bottom;
+	width: 54px;
+}
+
+.candidates_highlighted {
+	background-color: #CCFFCC;
+}
+
+.cell_duplicate input {
+	background-color: pink;
+	border-color: silver;
+	border-style: solid;
+	border-width: 1px;
+	color: red;
+}
+
+.small_header {
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	margin: 10px;
+}
+
+.highlight_button {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 1px 4px;
+}
+
+.blank_cell_highlight_black input {
+	color: black;
+}
+
+.blank_cell_highlight_red input {
+	color: red;
+}
+
+.blank_cell_highlight_blue input {
+	color: blue;
+}
+
+.blank_cell_highlight_green input {
+	color: green;
+}
+
+.blank_cell_highlight_purple input {
+	color: purple;
+}
+
+.large_button {
+	background-color: #305BC9;
+	background-image: url(Images/button_background.png);
+}
+
+.large_button_hover {
+	background-color: #4787ED;
+	background-image: url(Images/button_background_hover.png);
+}
+
